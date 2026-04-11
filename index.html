@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vernet Asociados — Consultoría en Recursos Humanos</title>
+  <meta name="description" content="Firma especializada en RH. Contratos, nómina, reclutamiento y consultoría organizacional para empresas en México."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:      #2AAADE;
+      --blue-dark: #1A7FAD;
+      --blue-deep: #0D4F6E;
+      --blue-light:#E6F6FD;
+      --blue-mid:  #B8E4F5;
+      --text:      #0A0A0A;
+      --text-muted:#6B7280;
+      --border:    rgba(0,0,0,0.08);
+      --bg:        #ffffff;
+      --bg-soft:   #F7FAFC;
+    }
+    html, body { height: 100%; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(255,255,255,0.96); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow .3s; }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .nav-logo svg { width: 28px; height: 28px; flex-shrink: 0; }
+    .nav-logo-text { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-link { font-size: 13px; color: var(--text-muted); padding: 0 1.25rem; height: 64px; display: flex; align-items: center; border-bottom: 2px solid transparent; cursor: pointer; transition: color .2s, border-color .2s; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
+    .nav-link:hover { color: var(--blue); }
+    .nav-link.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .nav-cta { font-size: 13px; font-weight: 500; background: var(--blue); color: #fff; padding: 9px 22px; border-radius: 7px; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: background .2s; }
+    .nav-cta:hover { background: var(--blue-dark); }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--text); padding: 4px; }
+    .nav-hamburger svg { width: 22px; height: 22px; }
+    .nav-mobile { display: none; flex-direction: column; background: #fff; border-top: 1px solid var(--border); }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile button { font-size: 14px; color: var(--text-muted); padding: 1rem 1.5rem; text-align: left; background: none; border: none; border-bottom: 1px solid var(--border); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: color .2s; }
+    .nav-mobile button:hover, .nav-mobile button.active { color: var(--blue); }
+    .nav-mobile .nav-cta-mobile { margin: 1rem 1.5rem 1.25rem; background: var(--blue); color: #fff; padding: 10px; border-radius: 7px; font-size: 14px; font-weight: 500; text-align: center; border-bottom: none; }
+
+    /* PAGE SYSTEM */
+    .page { display: none; min-height: 100vh; padding-top: 64px; }
+    .page.active { display: block; animation: fadeIn .35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* HERO */
+    .hero { min-height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding: 4rem 2rem 3rem; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .hero-bg::before { content: ''; position: absolute; right: -10%; top: -10%; width: 70vw; height: 70vw; max-width: 800px; max-height: 800px; background: radial-gradient(circle at 60% 40%, rgba(42,170,222,0.13) 0%, rgba(42,170,222,0.04) 50%, transparent 70%); border-radius: 50%; }
+    .hero-bg::after { content: ''; position: absolute; left: -5%; bottom: -10%; width: 40vw; height: 40vw; max-width: 500px; max-height: 500px; background: radial-gradient(circle, rgba(15,80,110,0.07) 0%, transparent 70%); border-radius: 50%; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(42,170,222,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(42,170,222,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .hero-gem-bg { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: min(45vw, 520px); opacity: 0.07; pointer-events: none; }
+    .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-dark); background: var(--blue-light); padding: 5px 14px; border-radius: 20px; margin-bottom: 1.75rem; }
+    .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .hero h1 { font-family: 'DM Sans', sans-serif; font-size: clamp(36px, 6vw, 72px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 780px; margin-bottom: 1.5rem; }
+    .hero h1 em { color: var(--blue); font-style: normal; }
+    .hero h1 .underline { position: relative; display: inline-block; }
+    .hero h1 .underline::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 3px; background: var(--blue); opacity: 0.3; border-radius: 2px; }
+    .hero-sub { font-size: clamp(15px, 1.8vw, 18px); color: var(--text-muted); line-height: 1.75; max-width: 520px; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 4rem; }
+    .btn-primary { font-size: 14px; font-weight: 500; background: var(--blue); color: #fff; padding: 13px 28px; border-radius: 8px; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: background .2s, transform .15s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-ghost { font-size: 14px; color: var(--text-muted); cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
+    .btn-ghost:hover { color: var(--blue); }
+    .btn-ghost::after { content: '→'; }
+    .hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .stat-num { font-family: 'DM Sans', sans-serif; font-size: 32px; font-weight: 700; color: var(--blue); }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* INNER PAGES */
+    .inner-page { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+    .page-header { margin-bottom: 3.5rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+    .page-header .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.75rem; }
+    .page-header h2 { font-family: 'DM Sans', sans-serif; font-size: clamp(28px, 4vw, 46px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.75rem; }
+    .page-header p { font-size: 16px; color: var(--text-muted); line-height: 1.75; max-width: 560px; }
+
+    /* SERVICES */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .service-card { border: 1px solid var(--border); border-top: 3px solid var(--blue); border-radius: 0 0 14px 14px; padding: 1.75rem; transition: box-shadow .25s, transform .25s; background: var(--bg); }
+    .service-card:hover { box-shadow: 0 8px 32px rgba(42,170,222,0.12); transform: translateY(-3px); }
+    .service-num { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 1rem; }
+    .service-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+    .service-icon svg { width: 18px; height: 18px; }
+    .service-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 0.6rem; }
+    .service-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text h3 { font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 600; margin-bottom: 1rem; }
+    .about-text p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.25rem; }
+    .diff-list { display: flex; flex-direction: column; gap: 14px; }
+    .diff-item { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; gap: 14px; align-items: flex-start; }
+    .diff-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 5px; }
+    .diff-item h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .diff-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* PROCESS */
+    .process-list { display: flex; flex-direction: column; max-width: 740px; }
+    .process-step { display: flex; gap: 2rem; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    .process-step:last-child { border-bottom: none; }
+    .ps-num { font-family: 'DM Sans', sans-serif; font-size: 48px; font-weight: 700; color: var(--blue-light); line-height: 1; flex-shrink: 0; width: 80px; text-align: right; }
+    .ps-body h3 { font-size: 18px; font-weight: 500; margin-bottom: 0.5rem; }
+    .ps-body p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-info h3 { font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 600; margin-bottom: 1rem; }
+    .contact-info p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+    .contact-detail { display: flex; gap: 12px; align-items: center; margin-bottom: 1rem; }
+    .contact-detail svg { width: 18px; height: 18px; color: var(--blue); flex-shrink: 0; }
+    .contact-detail span { font-size: 14px; color: var(--text-muted); }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 12px; font-weight: 500; color: var(--text); letter-spacing: 0.02em; }
+    .form-group input, .form-group textarea, .form-group select { font-size: 14px; font-family: 'DM Sans', sans-serif; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: var(--text); background: var(--bg); outline: none; transition: border-color .2s; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--blue); }
+    .form-group textarea { height: 110px; resize: vertical; }
+    .form-submit { font-size: 14px; font-weight: 500; background: var(--blue); color: #fff; padding: 12px 28px; border-radius: 8px; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: background .2s; align-self: flex-start; }
+    .form-submit:hover { background: var(--blue-dark); }
+    .form-note { font-size: 11px; color: var(--text-muted); }
+
+    /* FOOTER */
+    .footer-bar { border-top: 1px solid var(--border); padding: 1.5rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { display: flex; align-items: center; gap: 8px; }
+    .footer-logo svg { width: 20px; height: 20px; }
+    .footer-logo span { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links button { font-size: 12px; color: var(--text-muted); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: color .2s; }
+    .footer-links button:hover { color: var(--blue); }
+    .footer-copy { font-size: 11px; color: var(--text-muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 640px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: block; }
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-gem-bg { display: none; }
+      .inner-page { padding: 3rem 1.25rem; }
+      .process-step { flex-direction: column; gap: 0.5rem; }
+      .ps-num { width: auto; text-align: left; font-size: 28px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 420px) {
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .btn-primary { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.nav-link').forEach(function(l){ l.classList.remove('active'); });
+    var page = document.getElementById('page-' + id);
+    if (page) page.classList.add('active');
+    var link = document.querySelector('[data-page="' + id + '"]');
+    if (link) link.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function toggleMenu() {
+    var m = document.getElementById('mobileMenu');
+    if (m) m.classList.toggle('open');
+  }
+  function closeMenu() {
+    var m = document.getElementById('mobileMenu');
+    if (m) m.classList.remove('open');
+  }
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+</script>
+
+  <!-- NAV -->
+  <header class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="showPage('home')">
+        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#B8E4F5" stroke="#2AAADE" stroke-width="1"/>
+          <polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.6"/>
+          <polygon points="20,2 4,12 20,18" fill="#1A7FAD" opacity="0.7"/>
+          <polygon points="4,12 20,18 4,28" fill="#2AAADE" opacity="0.4"/>
+          <polygon points="36,12 20,18 36,28" fill="#1A7FAD" opacity="0.5"/>
+          <polygon points="20,18 4,28 20,38" fill="#2AAADE" opacity="0.7"/>
+          <polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.6"/>
+        </svg>
+        <span class="nav-logo-text">Vernet Asociados</span>
+      </div>
+      <nav class="nav-links">
+        <button class="nav-link" data-page="servicios" onclick="showPage('servicios')">Servicios</button>
+        <button class="nav-link" data-page="nosotros" onclick="showPage('nosotros')">Nosotros</button>
+        <button class="nav-link" data-page="proceso" onclick="showPage('proceso')">Proceso</button>
+        <button class="nav-link" data-page="contacto" onclick="showPage('contacto')">Contacto</button>
+      </nav>
+      <button class="nav-cta" onclick="showPage('contacto')">Agendar consulta</button>
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="nav-mobile" id="mobileMenu">
+      <button onclick="showPage('servicios');closeMenu()">Servicios</button>
+      <button onclick="showPage('nosotros');closeMenu()">Nosotros</button>
+      <button onclick="showPage('proceso');closeMenu()">Proceso</button>
+      <button onclick="showPage('contacto');closeMenu()">Contacto</button>
+      <button class="nav-cta-mobile" onclick="showPage('contacto');closeMenu()">Agendar consulta</button>
+    </nav>
+  </header>
+
+  <!-- PAGE: HOME -->
+  <div class="page active" id="page-home">
+    <section class="hero">
+      <div class="hero-bg"><div class="hero-grid"></div></div>
+      <svg class="hero-gem-bg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#2AAADE"/>
+        <polygon points="20,2 36,12 20,18" fill="#1A7FAD"/>
+        <polygon points="20,2 4,12 20,18" fill="#0F5070"/>
+        <polygon points="4,12 20,18 4,28" fill="#2AAADE"/>
+        <polygon points="36,12 20,18 36,28" fill="#1A7FAD"/>
+        <polygon points="20,18 4,28 20,38" fill="#2AAADE"/>
+        <polygon points="20,18 36,28 20,38" fill="#0F5070"/>
+      </svg>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Consultoría en Recursos Humanos · México</div>
+        <h1>Construyendo las empresas<br><em><span class="underline">del mañana</span></em></h1>
+        <p class="hero-sub">Firma especializada en RH que acompaña a organizaciones en la estructuración, operación y optimización de sus procesos de capital humano.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('contacto')">
+            Agendar consulta gratuita
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </button>
+          <button class="btn-ghost" onclick="showPage('servicios')">Ver servicios</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-num">+10</div><div class="stat-label">Años de experiencia</div></div>
+          <div class="stat"><div class="stat-num">+40</div><div class="stat-label">Empresas atendidas</div></div>
+          <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Enfoque en resultados</div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PAGE: SERVICIOS -->
+  <div class="page" id="page-servicios">
+    <div class="inner-page">
+      <div class="page-header">
+        <div class="eyebrow">Lo que hacemos</div>
+        <h2>Servicios especializados en RH</h2>
+        <p>Soluciones concretas para los retos más comunes en la gestión de personas, desde lo operativo hasta lo estratégico.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <div class="service-icon"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="2" stroke="#2AAADE" stroke-width="1.2"/><path d="M5 7h6M5 10h4" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <h3>Contratos y documentación laboral</h3>
+          <p>Redacción, revisión y gestión de contratos bajo normativa mexicana vigente. Cobertura desde el ingreso hasta la baja del trabajador.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <div class="service-icon"><svg viewBox="0 0 16 16" fill="none"><circle cx="6" cy="5" r="2.5" stroke="#2AAADE" stroke-width="1.2"/><circle cx="11" cy="5" r="2.5" stroke="#2AAADE" stroke-width="1.2"/><path d="M1 13c0-2.2 2.2-4 5-4s5 1.8 5 4" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round"/><path d="M11 9c1.7.3 3 1.6 3 3.5" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <h3>Reclutamiento y selección</h3>
+          <p>Perfilamiento, búsqueda y evaluación de candidatos para posiciones clave. Desde operativo hasta nivel gerencial y directivo.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <div class="service-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M3 12V7l5-4 5 4v5" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="9" width="4" height="3" rx="0.5" stroke="#2AAADE" stroke-width="1.2"/></svg></div>
+          <h3>Administración de nómina</h3>
+          <p>Cálculo, dispersión y cumplimiento fiscal. Integración con IMSS, INFONAVIT y SAT con puntualidad garantizada.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">04</div>
+          <div class="service-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2v4l2.5 2.5" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="8" r="5.5" stroke="#2AAADE" stroke-width="1.2"/></svg></div>
+          <h3>Control de asistencia y KPIs</h3>
+          <p>Registros de tiempo, ausentismo y métricas operativas. Reportes ejecutivos para toma de decisiones.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">05</div>
+          <div class="service-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M2 11l4-4 3 3 5-6" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Consultoría organizacional</h3>
+          <p>Diagnóstico, diseño de estructuras y acompañamiento estratégico. Identificamos el problema real antes de proponer soluciones.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">06</div>
+          <div class="service-icon"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1.5" stroke="#2AAADE" stroke-width="1.2"/><rect x="9" y="2" width="5" height="5" rx="1.5" stroke="#2AAADE" stroke-width="1.2"/><rect x="2" y="9" width="5" height="5" rx="1.5" stroke="#2AAADE" stroke-width="1.2"/><rect x="9" y="9" width="5" height="5" rx="1.5" stroke="#2AAADE" stroke-width="1.2"/></svg></div>
+          <h3>Outsourcing de RH</h3>
+          <p>Gestión integral del área como extensión de tu equipo directivo. Flexibilidad operativa sin costo fijo de estructura interna.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar"><div class="footer-inner">
+      <div class="footer-logo"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#B8E4F5" stroke="#2AAADE" stroke-width="1"/><polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.6"/><polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.6"/></svg><span>Vernet Asociados</span></div>
+      <div class="footer-links"><button onclick="showPage('servicios')">Servicios</button><button onclick="showPage('proceso')">Proceso</button><button onclick="showPage('contacto')">Contacto</button></div>
+      <div class="footer-copy">© 2026 Vernet Asociados</div>
+    </div></div>
+  </div>
+
+  <!-- PAGE: NOSOTROS -->
+  <div class="page" id="page-nosotros">
+    <div class="inner-page">
+      <div class="page-header">
+        <div class="eyebrow">Quiénes somos</div>
+        <h2>Especialistas en capital humano</h2>
+        <p>Una firma boutique con criterio experto, enfoque práctico y presencia activa en cada proyecto que tomamos.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>Nuestra filosofía</h3>
+          <p>En Vernet Asociados creemos que los retos de RH son, en el fondo, retos de negocio. Por eso no nos limitamos a ejecutar tareas — diagnosticamos, analizamos y proponemos soluciones con impacto real en la operación.</p>
+          <p>Trabajamos con empresas de distintos tamaños e industrias en México, desde PyMEs en crecimiento hasta organizaciones con estructuras complejas. Lo que nos une es el mismo estándar de exigencia y orientación a resultados.</p>
+          <p>Nuestro diferencial no es el tamaño — es el criterio y la profundidad con la que abordamos cada caso.</p>
+        </div>
+        <div class="diff-list">
+          <div class="diff-item"><div class="diff-dot"></div><div><h4>Soluciones a medida, no templates</h4><p>Cada proyecto parte del diagnóstico real de tu empresa.</p></div></div>
+          <div class="diff-item"><div class="diff-dot"></div><div><h4>Experiencia multisectorial</h4><p>Manufactura, servicios, tecnología y comercio.</p></div></div>
+          <div class="diff-item"><div class="diff-dot"></div><div><h4>Resultados medibles</h4><p>Indicadores reales del impacto generado en tu operación.</p></div></div>
+          <div class="diff-item"><div class="diff-dot"></div><div><h4>Acompañamiento continuo</h4><p>Presencia activa durante toda la duración del proyecto.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar"><div class="footer-inner">
+      <div class="footer-logo"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#B8E4F5" stroke="#2AAADE" stroke-width="1"/><polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.6"/><polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.6"/></svg><span>Vernet Asociados</span></div>
+      <div class="footer-links"><button onclick="showPage('servicios')">Servicios</button><button onclick="showPage('proceso')">Proceso</button><button onclick="showPage('contacto')">Contacto</button></div>
+      <div class="footer-copy">© 2026 Vernet Asociados</div>
+    </div></div>
+  </div>
+
+  <!-- PAGE: PROCESO -->
+  <div class="page" id="page-proceso">
+    <div class="inner-page">
+      <div class="page-header">
+        <div class="eyebrow">Cómo trabajamos</div>
+        <h2>Proceso claro,<br>sin fricciones</h2>
+        <p>Desde el primer contacto hasta la entrega de resultados, sabes exactamente en qué etapa estás y qué sigue.</p>
+      </div>
+      <div class="process-list">
+        <div class="process-step">
+          <div class="ps-num">01</div>
+          <div class="ps-body"><h3>Diagnóstico</h3><p>Escuchamos tu situación actual y detectamos el problema real detrás del síntoma. Muchas veces el problema declarado no es el problema real — esa distinción es la base de una solución que funciona.</p></div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num">02</div>
+          <div class="ps-body"><h3>Propuesta</h3><p>Diseñamos una solución a medida con alcance, tiempos y costo definidos desde el inicio. Sin sorpresas, sin letra chica. Si no podemos ayudarte, te lo decimos en esta etapa.</p></div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num">03</div>
+          <div class="ps-body"><h3>Ejecución</h3><p>Implementamos con tu equipo o de forma independiente, según lo requieras. Nos adaptamos a tu estructura y ritmo operativo sin generar fricción interna.</p></div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num">04</div>
+          <div class="ps-body"><h3>Seguimiento y cierre</h3><p>Medimos resultados contra los objetivos planteados y ajustamos cuando es necesario. El proyecto no termina hasta que los resultados están garantizados.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar"><div class="footer-inner">
+      <div class="footer-logo"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#B8E4F5" stroke="#2AAADE" stroke-width="1"/><polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.6"/><polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.6"/></svg><span>Vernet Asociados</span></div>
+      <div class="footer-links"><button onclick="showPage('servicios')">Servicios</button><button onclick="showPage('proceso')">Proceso</button><button onclick="showPage('contacto')">Contacto</button></div>
+      <div class="footer-copy">© 2026 Vernet Asociados</div>
+    </div></div>
+  </div>
+
+  <!-- PAGE: CONTACTO -->
+  <div class="page" id="page-contacto">
+    <div class="inner-page">
+      <div class="page-header">
+        <div class="eyebrow">Hablemos</div>
+        <h2>Agenda una consulta<br>sin costo</h2>
+        <p>En 30 minutos identificamos si podemos ayudarte y cómo. Sin compromiso.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>¿Cómo prefieres contactarnos?</h3>
+          <p>Puedes escribirnos directamente o llenar el formulario y te respondemos en menos de 24 horas.</p>
+          <div class="contact-detail">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#2AAADE" stroke-width="1.4" stroke-linecap="round"><path d="M2 4l6 5 6-5"/><rect x="1" y="3" width="14" height="10" rx="2"/></svg>
+            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="17747879637674637857617265797263766478747e767378643974787a397a6f">[email&#160;protected]</a></span>
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#2AAADE" stroke-width="1.4" stroke-linecap="round"><path d="M3 2h3l1.5 3.5-2 1.2a8 8 0 003.8 3.8l1.2-2L14 10v3a1 1 0 01-1 1C6 14 2 10 2 3a1 1 0 011-1z"/></svg>
+            <span>+52 (55) XXXX XXXX</span>
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#2AAADE" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5z"/><circle cx="8" cy="6" r="1.5"/></svg>
+            <span>Ciudad de México, México</span>
+          </div>
+        </div>
+        <div class="contact-form">
+          <div class="form-group"><label>Nombre completo</label><input type="text" placeholder="Tu nombre"/></div>
+          <div class="form-group"><label>Correo electrónico</label><input type="email" placeholder="correo@empresa.com"/></div>
+          <div class="form-group"><label>Empresa</label><input type="text" placeholder="Nombre de tu empresa"/></div>
+          <div class="form-group">
+            <label>Servicio de interés</label>
+            <select>
+              <option value="">Selecciona una opción</option>
+              <option>Contratos y documentación laboral</option>
+              <option>Reclutamiento y selección</option>
+              <option>Administración de nómina</option>
+              <option>Control de asistencia y KPIs</option>
+              <option>Consultoría organizacional</option>
+              <option>Outsourcing de RH</option>
+              <option>Consulta general</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Mensaje (opcional)</label><textarea placeholder="Cuéntanos brevemente tu situación actual..."></textarea></div>
+          <button class="form-submit">Enviar mensaje</button>
+          <p class="form-note">También puedes escribirnos por WhatsApp para una respuesta más rápida.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar"><div class="footer-inner">
+      <div class="footer-logo"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#B8E4F5" stroke="#2AAADE" stroke-width="1"/><polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.6"/><polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.6"/></svg><span>Vernet Asociados</span></div>
+      <div class="footer-links"><button onclick="showPage('servicios')">Servicios</button><button onclick="showPage('proceso')">Proceso</button><button onclick="showPage('contacto')">Contacto</button></div>
+      <div class="footer-copy">© 2026 Vernet Asociados</div>
+    </div></div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      const link = document.querySelector('[data-page="' + id + '"]');
+      if (link) link.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    function closeMenu()
