@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vernet Asociados — Consultoría en Recursos Humanos</title>
+  <meta name="description" content="Firma especializada en RH. Contratos, nómina, reclutamiento y consultoría organizacional para empresas en México." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #2AAADE;
+      --blue-dark:  #1A7FAD;
+      --blue-deep:  #0F5070;
+      --blue-light: #EAF6FD;
+      --blue-mid:   #B8E4F5;
+      --text:       #111827;
+      --text-muted: #6B7280;
+      --border:     rgba(0,0,0,0.08);
+      --bg:         #ffffff;
+      --bg-soft:    #F8FBFD;
+      --radius:     12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── UTILITIES ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue-dark); margin-bottom: 0.5rem;
+    }
+    .section-title { font-size: clamp(22px, 3vw, 28px); font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+    .section-sub { font-size: 15px; color: var(--text-muted); line-height: 1.75; max-width: 540px; margin-bottom: 2rem; }
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo svg { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 13px; color: var(--text-muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      font-size: 13px; font-weight: 500;
+      background: var(--blue); color: #fff;
+      padding: 8px 20px; border-radius: 7px;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); }
+    .nav-hamburger {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: 4px; color: var(--text);
+    }
+    .nav-hamburger svg { width: 22px; height: 22px; }
+    .nav-mobile {
+      display: none; flex-direction: column; gap: 0;
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-size: 14px; color: var(--text-muted);
+      padding: 0.85rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s;
+    }
+    .nav-mobile a:hover { color: var(--blue); }
+    .nav-mobile .nav-cta-mobile {
+      margin: 1rem 1.5rem 1.25rem;
+      text-align: center;
+      background: var(--blue); color: #fff;
+      padding: 10px; border-radius: 7px;
+      font-size: 14px; font-weight: 500;
+      border-bottom: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 1.5rem 4rem;
+      border-bottom: 3px solid var(--blue);
+      position: relative; overflow: hidden;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blue-dark); background: var(--blue-light);
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 500; line-height: 1.2;
+      max-width: 640px; margin-bottom: 1.25rem;
+    }
+    .hero h1 em { color: var(--blue); font-style: normal; }
+    .hero-sub {
+      font-size: 16px; color: var(--text-muted);
+      line-height: 1.75; max-width: 500px; margin-bottom: 2.25rem;
+    }
+    .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-primary {
+      font-size: 14px; font-weight: 500;
+      background: var(--blue); color: #fff;
+      padding: 11px 26px; border-radius: 8px;
+      transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .btn-ghost {
+      font-size: 14px; color: var(--blue-dark);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .btn-ghost::after { content: '→'; }
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .stat-num { font-size: 26px; font-weight: 500; color: var(--blue); }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .hero-gem {
+      position: absolute; right: -60px; top: -60px;
+      width: 340px; opacity: 0.05; pointer-events: none;
+    }
+
+    /* ── SERVICES ── */
+    .services { padding: 5rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-top: 2.5px solid var(--blue);
+      border-radius: 0 0 12px 12px;
+      padding: 1.35rem;
+      transition: box-shadow .2s;
+    }
+    .service-card:hover { box-shadow: 0 4px 20px rgba(42,170,222,0.1); }
+    .service-icon {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.85rem;
+    }
+    .service-icon svg { width: 16px; height: 16px; }
+    .service-card h3 { font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; color: var(--text); }
+    .service-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── DIFFERENTIATORS ── */
+    .diff { padding: 5rem 1.5rem; background: var(--bg-soft); border-bottom: 1px solid var(--border); }
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .diff-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .diff-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blue); flex-shrink: 0; margin-top: 5px;
+    }
+    .diff-item h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .diff-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── PROCESS ── */
+    .process { padding: 5rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .process-steps { display: flex; gap: 0; }
+    .step {
+      flex: 1; padding: 1.35rem;
+      border: 1px solid var(--border);
+      border-right: none;
+    }
+    .step:first-child { border-radius: 12px 0 0 12px; }
+    .step:last-child { border-right: 1px solid var(--border); border-radius: 0 12px 12px 0; }
+    .step-num { font-size: 11px; font-weight: 500; color: var(--blue); letter-spacing: 0.06em; margin-bottom: 0.6rem; }
+    .step h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+    .step p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 5rem 1.5rem; background: var(--bg-soft); border-bottom: 1px solid var(--border); }
+    .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .testimonial {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .quote-mark { font-family: 'DM Serif Display', serif; font-size: 40px; line-height: 1; color: var(--blue-mid); margin-bottom: 0.5rem; }
+    .testimonial p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.25rem; }
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 500; color: var(--blue-dark); flex-shrink: 0;
+    }
+    .t-name { font-size: 13px; font-weight: 500; color: var(--text); }
+    .t-role { font-size: 11px; color: var(--text-muted); }
+
+    /* ── CTA ── */
+    .cta-section { padding: 5rem 1.5rem; }
+    .cta-box {
+      background: var(--blue-deep);
+      border-radius: 20px;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-tagline {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(184,228,245,0.6);
+      margin-bottom: 1rem;
+    }
+    .cta-box h2 { font-size: clamp(22px, 3.5vw, 32px); font-weight: 500; color: #fff; margin-bottom: 0.75rem; }
+    .cta-box p { font-size: 15px; color: var(--blue-mid); line-height: 1.75; max-width: 440px; margin: 0 auto 2.25rem; }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+    .cta-btn {
+      font-size: 14px; font-weight: 500;
+      background: var(--blue); color: #fff;
+      padding: 12px 28px; border-radius: 8px;
+      transition: background .2s;
+    }
+    .cta-btn:hover { background: #1A7FAD; }
+    .cta-link { font-size: 14px; color: var(--blue-mid); }
+    .cta-link::after { content: ' →'; }
+    .cta-gem {
+      position: absolute; right: -80px; bottom: -80px;
+      width: 320px; opacity: 0.06; pointer-events: none;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 8px; }
+    .footer-logo svg { width: 20px; height: 20px; }
+    .footer-logo-text { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: var(--text-muted); transition: color .2s; }
+    .footer-links a:hover { color: var(--blue); }
+    .footer-copy { font-size: 11px; color: var(--text-muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: block; }
+
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .hero-stats { gap: 1.5rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .services { padding: 3.5rem 1.25rem; }
+
+      .diff { padding: 3.5rem 1.25rem; }
+      .diff-grid { grid-template-columns: 1fr; }
+
+      .process { padding: 3.5rem 1.25rem; }
+      .process-steps { flex-direction: column; }
+      .step { border-right: 1px solid var(--border); border-bottom: none; }
+      .step:first-child { border-radius: 12px 12px 0 0; }
+      .step:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 12px 12px; }
+
+      .testimonials { padding: 3.5rem 1.25rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .cta-section { padding: 3rem 1.25rem; }
+      .cta-box { padding: 2.5rem 1.25rem; }
+
+      .footer { flex-direction: column; align-items: flex-start; padding: 1.5rem 1.25rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 26px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .btn-primary { width: 100%; text-align: center; }
+      .cta-actions { flex-direction: column; width: 100%; }
+      .cta-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#B8E4F5" stroke="#2AAADE" stroke-width="1"/>
+          <polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.6"/>
+          <polygon points="20,2 4,12 20,18" fill="#1A7FAD" opacity="0.7"/>
+          <polygon points="4,12 20,18 4,28" fill="#2AAADE" opacity="0.4"/>
+          <polygon points="36,12 20,18 36,28" fill="#1A7FAD" opacity="0.5"/>
+          <polygon points="20,18 4,28 20,38" fill="#2AAADE" opacity="0.7"/>
+          <polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.6"/>
+        </svg>
+        <span class="nav-logo-text">Vernet Asociados</span>
+      </div>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="nav-cta" href="#contacto">Agendar consulta</a>
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="nav-mobile" id="mobileMenu" aria-label="Menú móvil">
+      <a href="#servicios" onclick="closeMenu()">Servicios</a>
+      <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
+      <a href="#proceso" onclick="closeMenu()">Proceso</a>
+      <a href="#contacto" onclick="closeMenu()">Contacto</a>
+      <a href="#contacto" class="nav-cta-mobile" onclick="closeMenu()">Agendar consulta</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-gem" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#2AAADE"/>
+    </svg>
+    <div class="hero-inner">
+      <div class="hero-tag">Consultoría en Recursos Humanos</div>
+      <h1>Gestionamos el capital humano que <em>construye</em> tu empresa</h1>
+      <p class="hero-sub">Vernet Asociados es una firma especializada en RH que acompaña a empresas en la estructuración, operación y optimización de sus procesos de personas.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contacto">Agendar consulta gratuita</a>
+        <a class="btn-ghost" href="#servicios">Conocer servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">+10</div>
+          <div class="stat-label">Años de experiencia</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">+40</div>
+          <div class="stat-label">Empresas atendidas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Enfoque en resultados</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-label">Lo que hacemos</div>
+      <div class="section-title">Servicios especializados en RH</div>
+      <p class="section-sub">Soluciones concretas para los retos más comunes en la gestión de personas, desde lo operativo hasta lo estratégico.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="3" width="12" height="10" rx="2" stroke="#2AAADE" stroke-width="1.2"/>
+              <path d="M5 7h6M5 10h4" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Contratos y documentación laboral</h3>
+          <p>Redacción, revisión y gestión de contratos bajo normativa mexicana vigente.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="6" cy="5" r="2.5" stroke="#2AAADE" stroke-width="1.2"/>
+              <circle cx="11" cy="5" r="2.5" stroke="#2AAADE" stroke-width="1.2"/>
+              <path d="M1 13c0-2.2 2.2-4 5-4s5 1.8 5 4" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M11 9c1.7.3 3 1.6 3 3.5" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Reclutamiento y selección</h3>
+          <p>Perfilamiento, búsqueda y evaluación de candidatos para posiciones clave.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 12V7l5-4 5 4v5" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="6" y="9" width="4" height="3" rx="0.5" stroke="#2AAADE" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <h3>Administración de nómina</h3>
+          <p>Cálculo, dispersión y cumplimiento fiscal de nómina para tu empresa.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 2v4l2.5 2.5" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round"/>
+              <circle cx="8" cy="8" r="5.5" stroke="#2AAADE" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <h3>Control de asistencia y KPIs</h3>
+          <p>Registros de tiempo, ausentismo y métricas operativas del capital humano.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 11l4-4 3 3 5-6" stroke="#2AAADE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Consultoría organizacional</h3>
+          <p>Diagnóstico, diseño de estructuras y acompañamiento estratégico en RH.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="5" height="5" rx="1.5" stroke="#2AAADE" stroke-width="1.2"/>
+              <rect x="9" y="2" width="5" height="5" rx="1.5" stroke="#2AAADE" stroke-width="1.2"/>
+              <rect x="2" y="9" width="5" height="5" rx="1.5" stroke="#2AAADE" stroke-width="1.2"/>
+              <rect x="9" y="9" width="5" height="5" rx="1.5" stroke="#2AAADE" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <h3>Outsourcing de RH</h3>
+          <p>Gestión integral del área de RH como extensión de tu equipo directivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIADORES -->
+  <section class="diff" id="nosotros">
+    <div class="container">
+      <div class="section-label">Por qué elegirnos</div>
+      <div class="section-title">Lo que nos distingue</div>
+      <p class="section-sub">No somos un despacho generalista. Somos especialistas que combinan criterio estratégico con ejecución operativa precisa.</p>
+      <div class="diff-grid">
+        <div class="diff-item">
+          <div class="diff-dot"></div>
+          <div>
+            <h4>Soluciones a medida, no templates</h4>
+            <p>Cada proyecto parte del diagnóstico real de tu empresa, no de un manual genérico.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-dot"></div>
+          <div>
+            <h4>Experiencia multisectorial</h4>
+            <p>Manufactura, servicios, tecnología y comercio — entendemos los matices de cada industria.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-dot"></div>
+          <div>
+            <h4>Resultados medibles</h4>
+            <p>Entregamos indicadores reales del impacto generado en tu operación de RH.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-dot"></div>
+          <div>
+            <h4>Acompañamiento continuo</h4>
+            <p>Presencia activa durante toda la duración del proyecto, no solo al inicio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="process" id="proceso">
+    <div class="container">
+      <div class="section-label">Cómo trabajamos</div>
+      <div class="section-title">Proceso claro y sin fricciones</div>
+      <p class="section-sub" style="margin-bottom:1.75rem;">Desde el primer contacto hasta la entrega, sabes exactamente en qué etapa estás.</p>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">01 — Diagnóstico</div>
+          <h4>Entendemos tu situación</h4>
+          <p>Escuchamos y detectamos el problema real detrás del síntoma.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02 — Propuesta</div>
+          <h4>Diseñamos la solución</h4>
+          <p>Alcance, tiempos y costo definidos desde el inicio.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03 — Ejecución</div>
+          <h4>Implementamos</h4>
+          <p>Con tu equipo o de forma independiente, según lo requieras.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04 — Seguimiento</div>
+          <h4>Medimos el impacto</h4>
+          <p>Ajustamos para garantizar los resultados comprometidos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-label">Clientes</div>
+      <div class="section-title">Lo que dicen de nosotros</div>
+      <p class="section-sub">Empresas que confían en Vernet Asociados para la gestión de su capital humano.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <div class="quote-mark">"</div>
+          <p>Vernet nos ayudó a estructurar todo el proceso de contratación. Lo que antes tomaba semanas ahora lo resolvemos en días con total certeza legal.</p>
+          <div class="t-author">
+            <div class="avatar">MR</div>
+            <div>
+              <div class="t-name">María R.</div>
+              <div class="t-role">Directora de Operaciones · Manufactura</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="quote-mark">"</div>
+          <p>El apoyo en nómina y contratos nos dio la certeza legal que necesitábamos. Profesionales, ágiles y muy atentos al detalle operativo.</p>
+          <div class="t-author">
+            <div class="avatar">JL</div>
+            <div>
+              <div class="t-name">Jorge L.</div>
+              <div class="t-role">CEO · Empresa de Servicios</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <div class="cta-box">
+        <svg class="cta-gem" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#2AAADE"/>
+        </svg>
+        <div class="cta-tagline">Construyendo las empresas del mañana</div>
+        <h2>¿Listo para transformar tu área de RH?</h2>
+        <p>Agenda una consulta sin costo. En 30 minutos identificamos si podemos ayudarte y cómo.</p>
+        <div class="cta-actions">
+          <a class="cta-btn" href="mailto:contacto@vernetasociados.com.mx">Agendar consulta gratuita</a>
+          <a class="cta-link" href="https://wa.me/521XXXXXXXXXX" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer">
+      <div class="footer-logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="#B8E4F5" stroke="#2AAADE" stroke-width="1"/>
+          <polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.6"/>
+          <polygon points="20,2 4,12 20,18" fill="#1A7FAD" opacity="0.7"/>
+          <polygon points="20,18 4,28 20,38" fill="#2AAADE" opacity="0.7"/>
+          <polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.6"/>
+        </svg>
+        <span class="footer-logo-text">Vernet Asociados</span>
+      </div>
+      <div class="footer-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="footer-copy">© 2026 Vernet Asociados. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+  </script>
+
+</body>
+</html>
