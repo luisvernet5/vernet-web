@@ -81,6 +81,7 @@
     #page-servicios .page-bg { background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80'); }
     #page-nosotros .page-bg  { background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80'); }
     #page-recursos .page-bg  { background-image: url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&q=80'); }
+    #page-ats .page-bg       { background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80'); }
     #page-contacto .page-bg  { background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600&q=80'); }
     #page-privacidad .page-bg{ background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80'); }
 
@@ -156,6 +157,26 @@
     .recursos-cta-text h3 { font-size: 22px; font-weight: 300; color: #fff; margin-bottom: 0.5rem; }
     .recursos-cta-text p { font-size: 14px; color: var(--text-muted); font-weight: 300; }
 
+    /* ── ATS ── */
+    .ats-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 2rem; }
+    .ats-section-title { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin: 4rem 0 1.5rem; display: flex; align-items: center; gap: 8px; }
+    .ats-section-title::before { content: ''; width: 24px; height: 1px; background: var(--blue); }
+    .ats-section-title + h3 { font-size: clamp(22px, 2.6vw, 30px); font-weight: 300; color: #fff; letter-spacing: -0.02em; margin-bottom: 2rem; }
+    .ats-module ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
+    .ats-module ul li { font-size: 12px; color: var(--text-muted); display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; font-weight: 300; }
+    .ats-module ul li::before { content: ''; width: 12px; height: 1px; background: var(--blue); flex-shrink: 0; margin-top: 8px; }
+    .ats-audience { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .ats-audience .diff-item h4 { font-size: 14px; }
+    .ats-pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.5rem; }
+    .ats-pricing .diff-item h4 { color: var(--blue); }
+    .ats-faq { border-top: 1px solid var(--border); max-width: 820px; }
+    .ats-faq details { border-bottom: 1px solid var(--border); }
+    .ats-faq summary { list-style: none; cursor: pointer; padding: 1.25rem 0; font-size: 15px; font-weight: 400; color: #fff; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .ats-faq summary::-webkit-details-marker { display: none; }
+    .ats-faq summary::after { content: '+'; color: var(--blue); font-size: 20px; font-weight: 300; transition: transform .2s; }
+    .ats-faq details[open] summary::after { transform: rotate(45deg); }
+    .ats-faq details p { font-size: 13px; color: var(--text-muted); line-height: 1.8; font-weight: 300; padding: 0 0 1.25rem; max-width: 680px; }
+
     /* ── CONTACT ── */
     .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; }
     .contact-info h3 { font-size: 20px; font-weight: 300; color: #fff; margin-bottom: 1rem; }
@@ -208,6 +229,7 @@
       .services-grid { grid-template-columns: 1fr 1fr; }
       .about-grid, .contact-grid, .recursos-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .recursos-cta { flex-direction: column; }
+      .ats-audience, .ats-pricing { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .nav-links, .nav-cta { display: none; }
@@ -275,6 +297,7 @@
         <button class="nav-link" data-page="servicios" onclick="showPage('servicios')">Servicios</button>
         <button class="nav-link" data-page="nosotros" onclick="showPage('nosotros')">Nosotros</button>
         <button class="nav-link" data-page="recursos" onclick="showPage('recursos')">Recursos</button>
+        <button class="nav-link" data-page="ats" onclick="showPage('ats')">ATS</button>
         <button class="nav-link" data-page="contacto" onclick="showPage('contacto')">Contacto</button>
       </nav>
       <button class="nav-cta" onclick="window.open('https://calendly.com/vernet-asociados/30min','_blank')">Agendar consulta</button>
@@ -288,6 +311,7 @@
       <button onclick="showPage('servicios');closeMenu()">Servicios</button>
       <button onclick="showPage('nosotros');closeMenu()">Nosotros</button>
       <button onclick="showPage('recursos');closeMenu()">Recursos</button>
+      <button onclick="showPage('ats');closeMenu()">ATS</button>
       <button onclick="showPage('contacto');closeMenu()">Contacto</button>
       <button class="nav-cta-mobile" onclick="window.open('https://calendly.com/vernet-asociados/30min','_blank');closeMenu()">Agendar consulta</button>
     </nav>
@@ -452,6 +476,152 @@
     </div></div>
   </div>
 
+  <!-- PAGE: ATS -->
+  <div class="page" id="page-ats">
+    <div class="page-bg"></div>
+    <div class="inner-page">
+      <div class="page-header">
+        <div class="eyebrow">ATS Tracker · Software de RH</div>
+        <h2>Todo el ciclo del talento,<br>en una sola plataforma</h2>
+        <p>Desde la apertura de una vacante hasta un colaborador activo, capacitado y en cumplimiento con NOM-035 y STPS, con reportes y analítica en cada paso.</p>
+        <div class="ats-actions">
+          <button class="btn-primary" onclick="window.open('https://calendly.com/soporte-atstracker','_blank')">
+            Agendar demo
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </button>
+          <button class="btn-outline" onclick="window.open('https://atstracker.com.mx/registro','_blank')">Probar gratis 14 días</button>
+        </div>
+      </div>
+      <hr class="section-divider"/>
+
+      <div class="ats-section-title">Una plataforma, seis frentes</div>
+      <h3>Módulos de ATS Tracker</h3>
+      <div class="services-grid">
+        <div class="service-card ats-module">
+          <div class="service-num">01</div>
+          <h3>Reclutamiento y selección</h3>
+          <p>Vacantes con folio, estatus y cierre, organizadas por empresa, proyecto y departamento.</p>
+          <ul>
+            <li>Etapas configurables por empresa</li>
+            <li>Vista de calendario o kanban</li>
+            <li>Seguimiento de descartados con motivo</li>
+            <li>Perfiles de puesto en PDF y Excel</li>
+          </ul>
+        </div>
+        <div class="service-card ats-module">
+          <div class="service-num">02</div>
+          <h3>Evaluaciones</h3>
+          <p>Biblioteca reutilizable de pruebas psicométricas, técnicas, de competencias y de conocimientos.</p>
+          <ul>
+            <li>Envío al candidato por enlace</li>
+            <li>Calificación automática o manual</li>
+            <li>Resultados en el expediente del candidato</li>
+            <li>Reportes PDF comparando finalistas</li>
+          </ul>
+        </div>
+        <div class="service-card ats-module">
+          <div class="service-num">03</div>
+          <h3>Empresas cliente y equipo</h3>
+          <p>Panel por cliente con vacantes abiertas, candidatos en proceso y contrataciones.</p>
+          <ul>
+            <li>Ranking de reclutadores</li>
+            <li>Vacantes asignadas y contrataciones</li>
+            <li>Días promedio de cobertura</li>
+          </ul>
+        </div>
+        <div class="service-card ats-module">
+          <div class="service-num">04</div>
+          <h3>Gestión de personal</h3>
+          <p>Base de colaboradores activos con expediente, contrato y capacitación en un solo sistema.</p>
+          <ul>
+            <li>Expediente digital con documentos pendientes</li>
+            <li>Contratos desde plantillas de la empresa</li>
+            <li>Capacitación STPS con formatos DC-1, DC-2 y DC-3</li>
+            <li>Plantilla autorizada vs. cubierta</li>
+          </ul>
+        </div>
+        <div class="service-card ats-module">
+          <div class="service-num">05</div>
+          <h3>Cumplimiento normativo</h3>
+          <p>Las obligaciones con STPS y la documentación operativa, en orden y a la mano.</p>
+          <ul>
+            <li>Cuestionarios NOM-035, reportes y política de prevención</li>
+            <li>Procedimientos ligados a cada perfil de puesto</li>
+            <li>Estudios socioeconómicos (ESE) y garantías de reposición</li>
+          </ul>
+        </div>
+        <div class="service-card ats-module">
+          <div class="service-num">06</div>
+          <h3>Analítica y reportes</h3>
+          <p>Indicadores clave para decidir con datos en cada etapa del proceso.</p>
+          <ul>
+            <li>Vacantes activas, contrataciones y días de cobertura</li>
+            <li>Tiempo de contratación por empresa y proyecto</li>
+            <li>Deserción y bajas tempranas con motivo</li>
+            <li>Exportación a Excel y PDF</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ats-section-title">¿Para quién es?</div>
+      <h3>Diseñado para equipos que contratan seguido</h3>
+      <div class="ats-audience">
+        <div class="diff-item"><h4>Empresas industriales y multisitio</h4><p>Control de vacantes, plantilla y capacitación por planta, proyecto y departamento.</p></div>
+        <div class="diff-item"><h4>Áreas de RH corporativas</h4><p>Un solo sistema para reclutar, evaluar, contratar y cumplir con la normativa.</p></div>
+        <div class="diff-item"><h4>Agencias y consultorías de RH</h4><p>Empresas cliente ilimitadas en un mismo plan, con panel y reportes por cliente.</p></div>
+      </div>
+
+      <div class="ats-section-title">Precios</div>
+      <h3>Pagas por colaboradores activos, no por usuarios</h3>
+      <div class="ats-pricing">
+        <div class="diff-item"><h4>Usuarios ilimitados</h4><p>En todos los módulos. Precios en MXN más IVA, sin contrato forzoso.</p></div>
+        <div class="diff-item"><h4>Hasta 20% de descuento</h4><p>10% al contratar 3 o más módulos y 20% con la suite completa. El plan anual incluye 2 meses gratis.</p></div>
+        <div class="diff-item"><h4>Precio fundador</h4><p>Los primeros 20 clientes congelan su tarifa por 24 meses. Más de 1,000 colaboradores: precio a la medida.</p></div>
+      </div>
+      <div class="recursos-cta">
+        <div class="recursos-cta-text">
+          <h3>Cotiza ATS Tracker para tu empresa</h3>
+          <p>Calcula tu precio según tus colaboradores y módulos, o escríbenos y te ayudamos.</p>
+        </div>
+        <div class="ats-actions" style="margin-top:0;">
+          <button class="btn-primary" onclick="window.open('https://web.atstracker.com.mx/#precios','_blank')">
+            Calcular precio
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </button>
+          <button class="btn-outline" onclick="window.open('https://wa.me/522221529382?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20ATS%20Tracker','_blank')">WhatsApp</button>
+        </div>
+      </div>
+
+      <div class="ats-section-title">Preguntas frecuentes</div>
+      <div class="ats-faq">
+        <details><summary>¿Necesito instalar algo?</summary><p>No. ATS Tracker funciona desde el navegador, en computadora y en celular.</p></details>
+        <details><summary>¿Puedo importar mi información actual?</summary><p>Sí. Puedes hacer una carga masiva desde Excel usando las plantillas de la plataforma.</p></details>
+        <details><summary>¿Puedo configurar mis propias etapas de contratación?</summary><p>Sí. Cada empresa configura las etapas de su proceso de reclutamiento.</p></details>
+        <details><summary>¿Cómo se cuentan los colaboradores?</summary><p>Solo cuentan los colaboradores activos. Si tu plantilla supera tu rango dos meses seguidos, te avisamos con 30 días de anticipación; si baja, el precio se ajusta automáticamente.</p></details>
+        <details><summary>¿Cómo protegen mis datos?</summary><p>Acceso por roles, transmisión cifrada, bitácora de acciones y cumplimiento con el aviso de privacidad y la LFPDPPP.</p></details>
+        <details><summary>¿Qué soporte ofrecen?</summary><p>Soporte en español por correo (soporte@atstracker.com.mx) y WhatsApp en horario laboral.</p></details>
+      </div>
+
+      <div class="recursos-cta" style="margin-top:4rem;">
+        <div class="recursos-cta-text">
+          <h3>Conoce ATS Tracker en 30 minutos</h3>
+          <p>Te mostramos la plataforma con tu caso. O pruébala gratis 14 días.</p>
+        </div>
+        <div class="ats-actions" style="margin-top:0;">
+          <button class="btn-primary" onclick="window.open('https://calendly.com/soporte-atstracker','_blank')">
+            Agendar demo
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </button>
+          <button class="btn-outline" onclick="window.open('https://web.atstracker.com.mx/','_blank')">Visitar sitio de ATS</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar"><div class="footer-inner">
+      <div class="footer-logo"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="rgba(184,228,245,0.1)" stroke="#2AAADE" stroke-width="1"/><polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.7"/><polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.7"/></svg><span>Vernet Asociados</span></div>
+      <div class="footer-copy">© 2026 Vernet Asociados · <button onclick="showPage('privacidad')" style="background:none;border:none;font-size:11px;color:var(--text-dim);cursor:pointer;text-decoration:underline;font-family:'DM Sans',sans-serif;">Aviso de privacidad</button></div>
+    </div></div>
+  </div>
+
   <!-- PAGE: CONTACTO -->
   <div class="page" id="page-contacto">
     <div class="page-bg"></div>
@@ -512,6 +682,7 @@
               <option>Capacitación</option>
               <option>Evaluación de clima organizacional</option>
               <option>Recursos electrónicos / Suscripción</option>
+              <option>ATS Tracker (demo o prueba gratis)</option>
               <option>Consulta general</option>
             </select>
           </div>
