@@ -82,6 +82,7 @@
     #page-nosotros .page-bg  { background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80'); }
     #page-recursos .page-bg  { background-image: url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&q=80'); }
     #page-ats .page-bg       { background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80'); }
+    #page-libros .page-bg    { background-image: url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&q=80'); }
     #page-contacto .page-bg  { background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600&q=80'); }
     #page-privacidad .page-bg{ background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80'); }
 
@@ -177,6 +178,16 @@
     .ats-faq details[open] summary::after { transform: rotate(45deg); }
     .ats-faq details p { font-size: 13px; color: var(--text-muted); line-height: 1.8; font-weight: 300; padding: 0 0 1.25rem; max-width: 680px; }
 
+    /* ── LIBROS ── */
+    .book { display: grid; grid-template-columns: 320px 1fr; gap: 4.5rem; align-items: center; }
+    .book-cover { display: block; transition: transform .3s; }
+    .book-cover:hover { transform: translateY(-4px); }
+    .book-cover img { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--border-2); box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(42,170,222,0.15); }
+    .book-info .service-num { margin-bottom: 1rem; }
+    .book-info h3 { font-size: clamp(26px, 3vw, 38px); font-weight: 300; color: #fff; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.5rem; }
+    .book-author { font-size: 13px; color: var(--blue); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+    .book-info > p { font-size: 14px; color: var(--text-muted); line-height: 1.85; font-weight: 300; margin-bottom: 1.5rem; max-width: 520px; }
+
     /* ── CONTACT ── */
     .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; }
     .contact-info h3 { font-size: 20px; font-weight: 300; color: #fff; margin-bottom: 1rem; }
@@ -225,11 +236,20 @@
     .footer-copy { font-size: 11px; color: var(--text-dim); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .nav-link { padding: 0 0.7rem; }
+    }
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: block; }
+    }
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: 1fr 1fr; }
       .about-grid, .contact-grid, .recursos-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .recursos-cta { flex-direction: column; }
       .ats-audience, .ats-pricing { grid-template-columns: 1fr; }
+      .book { grid-template-columns: 1fr; gap: 2.5rem; }
+      .book-cover { max-width: 280px; }
     }
     @media (max-width: 640px) {
       .nav-links, .nav-cta { display: none; }
@@ -298,6 +318,7 @@
         <button class="nav-link" data-page="nosotros" onclick="showPage('nosotros')">Nosotros</button>
         <button class="nav-link" data-page="recursos" onclick="showPage('recursos')">Recursos</button>
         <button class="nav-link" data-page="ats" onclick="showPage('ats')">ATS</button>
+        <button class="nav-link" data-page="libros" onclick="showPage('libros')">Libros</button>
         <button class="nav-link" data-page="contacto" onclick="showPage('contacto')">Contacto</button>
       </nav>
       <button class="nav-cta" onclick="window.open('https://calendly.com/vernet-asociados/30min','_blank')">Agendar consulta</button>
@@ -312,6 +333,7 @@
       <button onclick="showPage('nosotros');closeMenu()">Nosotros</button>
       <button onclick="showPage('recursos');closeMenu()">Recursos</button>
       <button onclick="showPage('ats');closeMenu()">ATS</button>
+      <button onclick="showPage('libros');closeMenu()">Libros</button>
       <button onclick="showPage('contacto');closeMenu()">Contacto</button>
       <button class="nav-cta-mobile" onclick="window.open('https://calendly.com/vernet-asociados/30min','_blank');closeMenu()">Agendar consulta</button>
     </nav>
@@ -614,6 +636,43 @@
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </button>
           <button class="btn-outline" onclick="window.open('https://web.atstracker.com.mx/','_blank')">Visitar sitio de ATS</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar"><div class="footer-inner">
+      <div class="footer-logo"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 36,12 36,28 20,38 4,28 4,12" fill="rgba(184,228,245,0.1)" stroke="#2AAADE" stroke-width="1"/><polygon points="20,2 36,12 20,18" fill="#2AAADE" opacity="0.7"/><polygon points="20,18 36,28 20,38" fill="#0F5070" opacity="0.7"/></svg><span>Vernet Asociados</span></div>
+      <div class="footer-copy">© 2026 Vernet Asociados · <button onclick="showPage('privacidad')" style="background:none;border:none;font-size:11px;color:var(--text-dim);cursor:pointer;text-decoration:underline;font-family:'DM Sans',sans-serif;">Aviso de privacidad</button></div>
+    </div></div>
+  </div>
+
+  <!-- PAGE: LIBROS -->
+  <div class="page" id="page-libros">
+    <div class="page-bg"></div>
+    <div class="inner-page">
+      <div class="page-header">
+        <div class="eyebrow">Libros</div>
+        <h2>Conocimiento práctico de RH, por escrito</h2>
+        <p>Guías escritas desde la experiencia en consultoría para quienes enfrentan día a día la gestión del capital humano en México.</p>
+      </div>
+      <hr class="section-divider"/>
+      <div class="book">
+        <a class="book-cover" href="https://www.amazon.com/dp/B0GX34Z3SQ" target="_blank" rel="noopener">
+          <img src="libro-y-ahora-que-hago.jpg" alt="Portada del libro ¿Y ahora qué hago? Soy el nuevo de RH" width="276" height="370" loading="lazy"/>
+        </a>
+        <div class="book-info">
+          <div class="service-num">Disponible en Amazon</div>
+          <h3>¿Y ahora qué hago?<br>Soy el nuevo de RH</h3>
+          <div class="book-author">Luis Beltran Arredondo Vernet</div>
+          <p>Una guía práctica para quien acaba de llegar al área de Recursos Humanos y necesita resolver desde el primer día las obligaciones laborales y fiscales de la empresa.</p>
+          <ul class="enfoque-list" style="margin-bottom:2rem;">
+            <li>Contratos y finiquitos</li>
+            <li>IMSS, INFONAVIT y SAT</li>
+            <li>Inspecciones y despidos</li>
+          </ul>
+          <button class="btn-primary" onclick="window.open('https://www.amazon.com/dp/B0GX34Z3SQ','_blank')">
+            Comprar en Amazon
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </button>
         </div>
       </div>
     </div>
